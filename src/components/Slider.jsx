@@ -9,12 +9,12 @@ import "swiper/css/navigation";
 import { Keyboard, Pagination, Navigation } from "swiper/modules";
 
 import headphone from "../assets/Image/headphones.avif";
-import doll from "../assets/Image/p5.png";
+import camera from "../assets/Image/camerapic.avif";
 import glass from "../assets/Image/slider-bg.jpg";
 
 const Slider = () => {
   return (
-    <>
+    <div className="bg-base-200">
       <Swiper
         slidesPerView={1}
         spaceBetween={30}
@@ -90,9 +90,9 @@ const Slider = () => {
               </div>
               <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
                 <img
-                  className="object-cover object-center rounded"
+                  className="object-cover object-center rounded-full"
                   alt="hero"
-                  src={doll}
+                  src={camera}
                 />
               </div>
             </div>
@@ -135,7 +135,7 @@ const Slider = () => {
           </section>
         </SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 };
 
