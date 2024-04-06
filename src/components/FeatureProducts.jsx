@@ -24,12 +24,12 @@ const FeatureProducts = () => {
     <>
       <div className="container mx-auto">
         <SectionTitle heading="Feature Products" />
-        <section>
+        {/* <section>
           <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-            <ul className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
               {featureProducts.map((item, index) => {
                 return (
-                  <li
+                  <div
                     className="w-full mx-auto group sm:max-w-sm border-2 rounded-lg p-5"
                     key={index}
                   >
@@ -46,32 +46,51 @@ const FeatureProducts = () => {
                       <h3 className="text-lg text-gray-800 duration-150 group-hover:text-indigo-600 font-semibold">
                         {item.title}
                       </h3>
-                      <p className="text-gray-600 text-sm duration-150 group-hover:text-gray-800">
-                        {item.description}
-                      </p>
-                      <h5 className="text-lg text-gray-800 duration-150 group-hover:text-indigo-600 font-semibold">
+
+                      <h5 className="mt-4 text-gray-800 text-xl font-semibold">
                         Price: {item.price}
                       </h5>
                     </div>
-                    <button className="flex items-center gap-2 px-3 py-1.5 text-sm text-white duration-150 bg-indigo-600 rounded-lg hover:bg-indigo-500 active:bg-indigo-700">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-4 h-4"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M6.32 2.577a49.255 49.255 0 0111.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 01-1.085.67L12 18.089l-7.165 3.583A.75.75 0 013.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      Button
-                    </button>
-                  </li>
+                  </div>
+
+                 
                 );
               })}
-            </ul>
+            </div>
+          </div>
+        </section> */}
+
+        <section className="mt-12 mx-auto px-4 max-w-screen-xl md:px-8">
+          <div className="mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+            {featureProducts.map((items, index) => (
+              <div
+                className="max-w-md mx-auto mt-4 shadow-lg border rounded-md duration-300 hover:shadow-sm"
+                key={index}
+              >
+                <img
+                  src={items.image}
+                  loading="lazy"
+                  alt={items.title}
+                  className="border-b-2 object-contain h-56 w-96 p-2"
+                />
+
+                <div className="pt-3 ml-4 mr-2 mb-3">
+                  <h5 className="text-indigo-600 text-xs tracking-widest title-font mb-1">
+                    {items.category}
+                  </h5>
+                  <h3 className="text-xl text-gray-900">{items.title}</h3>
+                  <p className="text-gray-400 text-sm mt-1">{items.desc}</p>
+                </div>
+                <div className="flex justify-between p-4">
+                  <h5 className=" text-gray-800 text-xl font-semibold">
+                    Price: ${items.price}
+                  </h5>
+                  <button className="px-3 py-1.5 text-sm text-white duration-150 bg-indigo-600 rounded-full hover:bg-indigo-500 active:bg-indigo-700">
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </div>
