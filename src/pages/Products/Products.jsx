@@ -41,7 +41,7 @@ const Products = () => {
                   <h2 className="text-gray-900 title-font text-lg font-medium">
                     {item.title}
                   </h2>
-                  <p className="mt-1">${item.price}</p>
+                  <p className="mt-1">Price: ${item.price}</p>
 
                   <span className="text-orange-500 ml-3 font-semibold">
                     {item.rating.rate} Reviews
