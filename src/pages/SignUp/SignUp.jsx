@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const SignUp = () => {
   return (
     <>
-      <main className="w-full h-screen flex flex-col items-center justify-center mt-5 sm:px-4">
+      <main className="w-full h-screen flex flex-col items-center justify-center mt-20 mb-20 sm:px-4">
         <div className="w-full space-y-6 text-gray-600 sm:max-w-md">
           <div className="text-center">
             {/* <img
