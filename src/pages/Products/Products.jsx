@@ -23,6 +23,7 @@ const Products = () => {
     <>
       <section className="text-gray-600 body-font">
         <SectionTitle heading="All Products" />
+        <p className="text-center font-bold">Explore a Diverse Collection of Items from the PremiumCart</p>
         <div className="container px-5 py-24 mx-auto">
           <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3 w-full text-center">
             {products.map((item, index) => (
