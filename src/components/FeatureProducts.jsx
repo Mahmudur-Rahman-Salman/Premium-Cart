@@ -24,42 +24,6 @@ const FeatureProducts = () => {
     <>
       <div className="container mx-auto">
         <SectionTitle heading="Feature Products" />
-        {/* <section>
-          <div className="max-w-screen-xl mx-auto px-4 md:px-8">
-            <div className="grid gap-x-8 gap-y-10 mt-16 sm:grid-cols-2 lg:grid-cols-3">
-              {featureProducts.map((item, index) => {
-                return (
-                  <div
-                    className="w-full mx-auto group sm:max-w-sm border-2 rounded-lg p-5"
-                    key={index}
-                  >
-                    <img
-                      src={item.image}
-                      loading="lazy"
-                      alt={item.title}
-                      className="border-b-2 object-contain h-56 w-96 p-2"
-                    />
-                    <div className="mt-3 space-y-2">
-                      <span className="block text-indigo-600 text-sm">
-                        {item.category}
-                      </span>
-                      <h3 className="text-lg text-gray-800 duration-150 group-hover:text-indigo-600 font-semibold">
-                        {item.title}
-                      </h3>
-
-                      <h5 className="mt-4 text-gray-800 text-xl font-semibold">
-                        Price: {item.price}
-                      </h5>
-                    </div>
-                  </div>
-
-                 
-                );
-              })}
-            </div>
-          </div>
-        </section> */}
-
         <section className="mt-12 mx-auto px-4 max-w-screen-xl md:px-8">
           <div className="mt-12 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {featureProducts.map((items, index) => (
@@ -89,6 +53,18 @@ const FeatureProducts = () => {
                     Add to Cart
                   </button>
                 </div>
+                {/* <div className="rating">
+                  {[...Array(5)].map((_, i) => (
+                    <input
+                      key={i}
+                      type="radio"
+                      name={`rating-${index}`}
+                      checked={i < items.rating.rate}
+                      className="mask mask-star-2 bg-orange-400"
+                    />
+                  ))}
+                </div> */}
+
               </div>
             ))}
           </div>
