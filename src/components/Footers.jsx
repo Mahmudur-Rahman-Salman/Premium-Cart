@@ -5,10 +5,13 @@ const Footers = () => {
     <>
       <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8 mt-10 border-t-2">
         <div className="max-w-lg sm:mx-auto sm:text-center">
-          <img
+          {/* <img
             src="https://www.floatui.com/logo.svg"
             className="w-32 sm:mx-auto"
-          />
+          /> */}
+          <p className="font-bold font-serif text-lg text-black">
+            Premium<span className="text-orange-600">Cart</span>
+          </p>
           <p className="leading-relaxed mt-2 text-[15px]">
             Lorem Ipsum has been the industrys standard dummy text ever since
             the 1500s, when an unknown printer took a galley of type and

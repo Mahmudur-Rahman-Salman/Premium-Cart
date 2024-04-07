@@ -30,7 +30,7 @@ const Products = () => {
         <div className="container px-5 py-24 mx-auto">
           <div className="grid gap-2 md:grid-cols-2 lg:grid-cols-3 w-full text-center">
             {products.map((item, index) => (
-              <div key={index} className=" p-4 w-full border-2 rounded-lg m-2">
+              <div key={index} className=" p-4 w-full border-2 rounded-lg m-2 shadow-lg duration-300 hover:shadow-sm">
                 {/* <Link to={item.id} item={item}> */}
                   <img
                     alt={item.title}
@@ -51,7 +51,7 @@ const Products = () => {
                   <span className="text-orange-500 ml-3 font-semibold">
                     {item.rating.rate} Reviews
                   </span>
-                  <Link to={`/products/${item.id}`} item={item} ><p>See more... </p></Link>
+                  <Link to={`/products/${item.id}`} item={item} ><p>Click here to see more... </p></Link>
                   <button className="flex items-center w-full justify-center mx-auto mt-3 gap-2 px-3 py-1.5 text-sm text-black duration-150 bg-slate-400 rounded-lg hover:bg-slate-500 hover:text-white ">
                     <img src={cartIcon} className="w-8 h-8" alt="cart icon" />
                     Add to Cart
