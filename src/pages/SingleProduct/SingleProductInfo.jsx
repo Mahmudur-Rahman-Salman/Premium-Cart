@@ -23,7 +23,7 @@ const SingleProductInfo = () => {
       }
     };
     fetchSingleProduct();
-  }, []);
+  }, [id]);
   return (
     <>
       <section className="text-gray-600 body-font">
@@ -73,11 +73,32 @@ const SingleProductInfo = () => {
             </h1>
             <p className="mb-8 leading-relaxed">{singleProduct?.description}</p>
             <div className="flex justify-center">
-              <p className="font-mono text-orange-500">{singleProduct?.rating?.rate} Reviews</p>
-              <p className="font-mono ms-5"> Count: {singleProduct?.rating?.count}</p>
+              <p className="font-mono text-orange-500">
+                {singleProduct?.rating?.rate} Reviews
+              </p>
+              <p className="font-mono ms-5">
+                {" "}
+                Count: {singleProduct?.rating?.count}
+              </p>
             </div>
           </div>
-          <Link to="/products">Go back to products</Link>
+          <Link
+            to="/products"
+            className="flex justify-center items-center text-indigo-600 hover:text-indigo-900 border-b-2 border-b-indigo-500 font-mono font-medium m-2"
+          >
+            <svg
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              className="w-4 h-4 ml-2 mr-3"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+            Go back to products
+          </Link>
         </div>
       </section>
     </>
