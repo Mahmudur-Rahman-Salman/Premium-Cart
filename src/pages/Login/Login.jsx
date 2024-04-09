@@ -1,6 +1,15 @@
 import { Link } from "react-router-dom";
 
 const Login = () => {
+
+  const handleLogin = (e) => {
+    e.preventDefault(); 
+    const form = e.target; 
+    const email = form.email.value; 
+    const password = form.password.value; 
+    console.log(email, password); 
+
+  }
   return (
     <>
       <main className="w-full h-screen flex flex-col items-center justify-center px-4 mt-20 mb-20">
@@ -20,11 +29,12 @@ const Login = () => {
               </h3>
             </div>
           </div>
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+          <form onSubmit={handleLogin} className="space-y-5">
             <div>
               <label className="font-medium">Email</label>
               <input
                 type="email"
+                name="email"
                 required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
@@ -33,11 +43,12 @@ const Login = () => {
               <label className="font-medium">Password</label>
               <input
                 type="password"
+                name="password"
                 required
                 className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
               />
             </div>
-            <div className="flex items-center justify-between text-sm">
+            {/* <div className="flex items-center justify-between text-sm">
               <div className="flex items-center gap-x-3">
                 <input
                   type="checkbox"
@@ -56,7 +67,7 @@ const Login = () => {
               >
                 Forgot password?
               </a>
-            </div>
+            </div> */}
             <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
               Sign in
             </button>
