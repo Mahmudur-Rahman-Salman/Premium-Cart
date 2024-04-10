@@ -3,22 +3,20 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Firebase/Providers/AuthProviders";
 
 const Login = () => {
-
-  const {signIn} = useContext(AuthContext); 
+  const { signIn } = useContext(AuthContext);
 
   const handleLogin = (e) => {
-    e.preventDefault(); 
-    const form = e.target; 
-    const email = form.email.value; 
-    const password = form.password.value; 
-    console.log(email, password); 
-    signIn(email, password)
-    .then(result => {
-      const user = result.user; 
-      console.log(user); 
-    })
-
-  }
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    signIn(email, password).then((result) => {
+      const user = result.user;
+      console.log(user);
+      
+    });
+  };
   return (
     <>
       <main className="w-full h-screen flex flex-col items-center justify-center px-4 mt-20 mb-20">

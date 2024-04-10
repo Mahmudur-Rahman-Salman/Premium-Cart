@@ -1,10 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Firebase/Providers/AuthProviders";
 
 const Navigation = () => {
   const [state, setState] = useState(false);
-
-  // Replace javascript:void(0) paths with your paths
+  const { user, logOut } = useContext(AuthContext);
+  
+  // logout function 
+  const handleLogout = () => {
+    logOut()
+    .then(() => {})
+    .catch((error) => console.log(error))
+  }
   const navigation = [
     { title: "Home", path: "/" },
     { title: "Products", path: "/products" },
@@ -96,12 +103,23 @@ const Navigation = () => {
               })}
             </ul>
             <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
-              <Link
-                to="/login"
-                className="block text-gray-700 hover:text-gray-900"
-              >
-                Log in
-              </Link>
+              {user ? (
+                <>
+                  <button onClick={handleLogout} className="px-4 py-2 text-white font-medium bg-gray-800 hover:bg-gray-700 rounded-full duration-150  active:shadow-lg">
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="block text-gray-700 hover:text-gray-900"
+                  >
+                    Log in
+                  </Link>
+                </>
+              )}
+
               <Link
                 to="/signup"
                 className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex"
