@@ -1,11 +1,16 @@
-
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
-
-
 const SignUp = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
- 
+  const onSubmit = (data) => {
+    console.log(data);
+  };
   return (
     <>
       <main className="w-full h-screen flex flex-col items-center justify-center mt-32 mb-32 sm:px-4">
@@ -35,33 +40,64 @@ const SignUp = () => {
             </div>
           </div>
           <div className="bg-white shadow p-4 py-6 sm:p-6 sm:rounded-lg">
-            <form onSubmit={e => e.preventDefault()} className="space-y-5">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
               <div>
                 <label className="font-medium">Name</label>
                 <input
                   type="text"
                   name="name"
+                  {...register("name", { required: true })}
                   required
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
+                {errors.name && (
+                  <span className="text-red-700">Name is required</span>
+                )}
               </div>
               <div>
                 <label className="font-medium">Email</label>
                 <input
                   type="email"
                   name="email"
+                  {...register("email", { required: true })}
                   required
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
+                {errors.email && (
+                  <span className="text-red-700">Email is required</span>
+                )}
               </div>
               <div>
                 <label className="font-medium">Password</label>
                 <input
                   type="password"
                   name="password"
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    maxLength: 20,
+                    pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                  })}
                   required
                   className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
                 />
+                {errors.password && (
+                  <span className="text-red-700">Password is required</span>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-600">Password must be 6 characters</p>
+                )}
+                {errors.password?.type === "maxLength" && (
+                  <p className="text-red-600">
+                    Password must be less than 20 characters
+                  </p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-600">
+                    Password must have one Uppercase one lower case, one number
+                    and one special character.
+                  </p>
+                )}
               </div>
               <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
                 Create account
