@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Firebase/Providers/AuthProviders";
+import Swal from "sweetalert2";
 
 
 const SignUp = () => {
+  const navigate = useNavigate(); 
   const {
     register,
     handleSubmit,
@@ -19,7 +21,14 @@ const SignUp = () => {
       const user = result.user;
       console.log(user);
       reset();
-      
+      Swal.fire({
+        position: "top-center",
+        icon: "success",
+        title: "User created successfully.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate('/'); 
     });
   };
   return (

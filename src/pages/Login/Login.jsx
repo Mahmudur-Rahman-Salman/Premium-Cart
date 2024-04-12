@@ -1,9 +1,12 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Firebase/Providers/AuthProviders";
+import Swal from "sweetalert2";
+
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -14,8 +17,18 @@ const Login = () => {
     signIn(email, password).then((result) => {
       const user = result.user;
       console.log(user);
-      
+      Swal.fire({
+        title: "User Login Successful.",
+        showClass: {
+          popup: "animate__animated animate__fadeInDown",
+        },
+        hideClass: {
+          popup: "animate__animated animate__fadeOutUp",
+        },
+      });
+      form.reset(); 
     });
+    
   };
   return (
     <>
