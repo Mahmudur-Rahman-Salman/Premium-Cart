@@ -5,19 +5,20 @@ import { AuthContext } from "../Firebase/Providers/AuthProviders";
 const Navigation = () => {
   const [state, setState] = useState(false);
   const { user, logOut } = useContext(AuthContext);
-  
-  // logout function 
+
+  // logout function
   const handleLogout = () => {
     logOut()
-    .then(() => {})
-    .catch((error) => console.log(error))
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navigation = [
     { title: "Home", path: "/" },
     { title: "Products", path: "/products" },
     { title: "Category", path: "/category" },
     { title: "About", path: "/about" },
     { title: "Contact", path: "/contact" },
+    { title: "Secret", path: "/secret" },
   ];
 
   useEffect(() => {
@@ -105,7 +106,11 @@ const Navigation = () => {
             <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
               {user ? (
                 <>
-                  <button onClick={handleLogout} className="px-4 py-2 text-white font-medium bg-gray-800 hover:bg-gray-700 rounded-full duration-150  active:shadow-lg">
+                  <span>{user?.displayName}</span>
+                  <button
+                    onClick={handleLogout}
+                    className="px-4 py-2 text-white font-medium bg-gray-800 hover:bg-gray-700 rounded-full duration-150  active:shadow-lg"
+                  >
                     Logout
                   </button>
                 </>

@@ -1,6 +1,13 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Footers = () => {
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear());
+  }, []);
+
   return (
     <>
       <footer className="text-gray-500 bg-white px-4 py-5 max-w-screen-xl mx-auto md:px-8 mt-10 border-t-2">
@@ -34,7 +41,15 @@ const Footers = () => {
         </ul>
         <div className="mt-8 items-center justify-between sm:flex">
           <div className="mt-4 sm:mt-0">
-            &copy; 2022 Float UI All rights reserved.
+            <p>
+              &copy;{currentYear}, All rights reserved by{" "}
+              <span className="font-bold font-serif text-lg text-black">
+                Premium
+              </span>
+              <span className="font-bold font-serif text-lg text-orange-600">
+                Cart
+              </span>
+            </p>
           </div>
           <div className="mt-6 sm:mt-0">
             <ul className="flex items-center space-x-4">

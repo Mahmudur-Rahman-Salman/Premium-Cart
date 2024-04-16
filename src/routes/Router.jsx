@@ -38,8 +38,7 @@ export const router = createBrowserRouter([
         path: "/secret",
         element: (
           <PrivateRoutes>
-            {" "}
-            <SecretPage></SecretPage>{" "}
+            <SecretPage></SecretPage>
           </PrivateRoutes>
         ),
       },

@@ -4,9 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Firebase/Providers/AuthProviders";
 import Swal from "sweetalert2";
 
-
 const SignUp = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -14,21 +13,28 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+
+  // submiting form function
   const onSubmit = (data) => {
     console.log(data);
     createUser(data.email, data.password).then((result) => {
       const user = result.user;
       console.log(user);
-      reset();
-      Swal.fire({
-        position: "top-center",
-        icon: "success",
-        title: "User created successfully.",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      navigate('/'); 
+      updateUserProfile(data.name, data.photoURL)
+        .then(() => {
+          console.log("user profile info updated");
+          reset();
+          Swal.fire({
+            position: "top-center",
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        })
+        .catch((error) => console.log(error));
     });
   };
   return (

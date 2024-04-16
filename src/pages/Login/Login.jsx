@@ -1,11 +1,16 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Firebase/Providers/AuthProviders";
 import Swal from "sweetalert2";
 
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+  const location = useLocation(); 
+  const navigate = useNavigate(); 
+
+  const from = location.state?.from?.pathName || '/'; 
+  console.log("state in the location login page", location.state);
   
 
   const handleLogin = (e) => {
@@ -27,6 +32,7 @@ const Login = () => {
         },
       });
       form.reset(); 
+      navigate(from, {replace: true}); 
     });
     
   };
