@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Firebase/Providers/AuthProviders";
+import { FaCartArrowDown } from "react-icons/fa";
 
 const Navigation = () => {
   const [state, setState] = useState(false);
@@ -104,6 +105,13 @@ const Navigation = () => {
               })}
             </ul>
             <div className="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
+              <Link
+                to="/"
+                className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex"
+              >
+                <FaCartArrowDown className="w-5 h-5" />
+                Cart
+              </Link>
               {user ? (
                 <>
                   <span>{user?.displayName}</span>
