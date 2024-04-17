@@ -2,10 +2,12 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../Firebase/Providers/AuthProviders";
 import { FaCartArrowDown } from "react-icons/fa";
+import useCart from "../Firebase/Providers/useCart";
 
 const Navigation = () => {
   const [state, setState] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+  const [cart] = useCart(); 
 
   // logout function
   const handleLogout = () => {
@@ -110,7 +112,7 @@ const Navigation = () => {
                 className="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex"
               >
                 <FaCartArrowDown className="w-5 h-5" />
-                0
+                +{cart.length}
               </Link>
               {user ? (
                 <>

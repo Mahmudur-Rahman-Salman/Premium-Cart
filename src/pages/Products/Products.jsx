@@ -2,16 +2,20 @@ import { useEffect } from "react";
 import { useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
 import cartIcon from "../../assets/Image/cart-icon.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Firebase/Providers/useAuth";
 import Swal from "sweetalert2";
+// import axios from "axios";
+import UseAxiosSecure from "../../Firebase/Providers/UseAxiosSecure";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const location = useLocation();
+  const axiosSecure = UseAxiosSecure(); 
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -19,7 +23,7 @@ const Products = () => {
         setLoading(true);
         const response = await fetch("https://fakestoreapi.com/products");
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setProducts(data);
       } catch (error) {
         setError("Error fetching data");
@@ -30,10 +34,36 @@ const Products = () => {
     fetchProducts();
   }, []);
 
-  const handleAddToCart = (food) => {
-    // console.log(food, user.email);
+  const handleAddToCart = (product) => {
+    // console.log(product);
+    // console.log(product, user.email);
     if (user && user.email) {
+      // console.log(product, user.email);
       // send cart data to the database
+      const cartItem = {
+        itemId: product._id,
+        user: user.email,
+        name: product.title,
+        image: product.image,
+        price: product.price
+      };
+
+      axiosSecure.post("/carts", cartItem)
+      .then((res) => {
+        console.log(res.data);
+        if(res.data.insertedId){
+          Swal.fire({
+            icon: "success",
+            title: `${product.title} has been added to the cart`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }
+      })
+      .catch((error) => {
+        console.error("Error adding item to cart:", error);
+      });
+      
     } else {
       Swal.fire({
         title: "You are not logged in!",
@@ -45,7 +75,7 @@ const Products = () => {
         confirmButtonText: "Yes, login",
       }).then((result) => {
         if (result.isConfirmed) {
-         navigate("/login"); 
+          navigate("/login", { state: { from: location } });
         }
       });
     }

@@ -9,7 +9,7 @@ const Login = () => {
   const location = useLocation(); 
   const navigate = useNavigate(); 
 
-  const from = location.state?.from?.pathName || '/'; 
+  const from = location.state?.from?.pathname || "/"; 
   console.log("state in the location login page", location.state);
   
 
