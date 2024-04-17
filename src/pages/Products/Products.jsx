@@ -2,12 +2,16 @@ import { useEffect } from "react";
 import { useState } from "react";
 import SectionTitle from "../../components/SectionTitle";
 import cartIcon from "../../assets/Image/cart-icon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuth from "../../Firebase/Providers/useAuth";
+import Swal from "sweetalert2";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -25,6 +29,27 @@ const Products = () => {
     };
     fetchProducts();
   }, []);
+
+  const handleAddToCart = (food) => {
+    // console.log(food, user.email);
+    if (user && user.email) {
+      // send cart data to the database
+    } else {
+      Swal.fire({
+        title: "You are not logged in!",
+        text: "Please login atfirst to add the item!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, login",
+      }).then((result) => {
+        if (result.isConfirmed) {
+         navigate("/login"); 
+        }
+      });
+    }
+  };
   return (
     <>
       <section className="text-gray-600 body-font">
@@ -95,7 +120,10 @@ const Products = () => {
                   <Link to={`/products/${item.id}`} item={item}>
                     <p>Click here to see more... </p>
                   </Link>
-                  <button className="flex items-center w-full justify-center mx-auto mt-3 gap-2 px-3 py-1.5 text-sm text-black duration-150 bg-slate-400 rounded-lg hover:bg-slate-500 hover:text-white ">
+                  <button
+                    onClick={() => handleAddToCart(item)}
+                    className="flex items-center w-full justify-center mx-auto mt-3 gap-2 px-3 py-1.5 text-sm text-black duration-150 bg-slate-400 rounded-lg hover:bg-slate-500 hover:text-white "
+                  >
                     <img src={cartIcon} className="w-8 h-8" alt="cart icon" />
                     Add to Cart
                   </button>
